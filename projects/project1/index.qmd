@@ -1,0 +1,37 @@
+---
+title: "Analysis of Cars"
+author: Shalini Harwalkar
+date: "March 4, 2026"
+---
+
+## Sub-Header
+Here is a plot:
+
+```{python}
+#| message: false
+#| echo: false
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+##load dataset
+
+df = sns.load_dataset("mpg").dropna()
+
+##scatter plot
+
+sns.scatterplot(x="mpg", y="displacement", data=df)
+plt.show()
+plt.figure()
+sns.scatterplot(x="mpg", y="displacement", hue="origin", data=df)
+
+plt.title("Fuel Efficiency vs Engine Displacement")
+plt.xlabel("Miles per Gallon (mpg)")
+plt.ylabel("Displacement")
+plt.show()
+```
+
+
+## Header
+Let's investigate the relationship between fuel efficiency (`mpg`) and engine displacement (`disp`) from the `mtcars` dataset. Those variables have a correlation of `{python} round(df["mpg"].corr(df["displacement"]), 2)`.

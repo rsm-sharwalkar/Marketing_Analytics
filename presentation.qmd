@@ -1,0 +1,43 @@
+---
+title: "Customized Quarto Website"
+author: "Shalini Harwalkar"
+format:
+  revealjs:
+    theme: default
+    css: slides.css
+    slide-number: true
+    transition: fade
+    center: true
+    controls: true
+    progress: true
+---
+
+## 👩‍💻 My Quarto Website
+
+### Built with Quarto and customized with CSS
+
+- Personal **About** page
+- Embedded **Resume**
+- **Project analysis** page with Python visualization
+
+---
+
+## ✨ What I Customized
+
+- Added custom colors, typography, and layout styling
+- Built a personal About page with profile links
+- Embedded my resume directly into the site
+- Created a project page with data visualization and interpretation
+
+---
+
+## 🚀 Key Takeaways
+
+This project shows how Quarto can be used to create both a **professional website** and a **RevealJS presentation**.
+
+### Demo Highlights
+- About page
+- Resume page
+- Project page
+
+**Thank you!**

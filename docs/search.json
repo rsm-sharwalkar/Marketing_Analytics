@@ -1,0 +1,198 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Shalini Harwalkar, a Master’s student in Business Analytics at UC San Diego with a background in Computer Science and Engineering.\nI’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shalini Harwalkar",
+    "section": "",
+    "text": "Welcome to my personal website!"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "My Resume",
+    "section": "",
+    "text": "PDFs and resumes\nYouTube or Vimeo videos\nGoogle Maps\nanother webpage\ndashboards or reports\nforms from another service\ncalendars or booking widgets\npayment or login flows in some cases\ndocs/previews from other platforms"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "My Projects",
+    "section": "",
+    "text": "Analysis of Cars\n\n\n\n\n\n\nShalini Harwalkar\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of Student Performance\n\n\n\n\n\n\nShalini Harwalkar\n\n\nApr 1, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/project1/index.html",
+    "href": "projects/project1/index.html",
+    "title": "Analysis of Cars",
+    "section": "",
+    "text": "Here is a plot:"
+  },
+  {
+    "objectID": "projects/project1/index.html#sub-header",
+    "href": "projects/project1/index.html#sub-header",
+    "title": "Analysis of Cars",
+    "section": "",
+    "text": "Here is a plot:"
+  },
+  {
+    "objectID": "projects/project1/index.html#header",
+    "href": "projects/project1/index.html#header",
+    "title": "Analysis of Cars",
+    "section": "Header",
+    "text": "Header\nLet’s investigate the relationship between fuel efficiency (mpg) and engine displacement (disp) from the mtcars dataset. Those variables have a correlation of np.float64(-0.81)."
+  },
+  {
+    "objectID": "projects/project1/index.html#headerets-investigate-the-relationship-between-fuel-efficiency-mpg-and-engine-displacement-disp-from-the-mtcars-dataset.-those-variables-have-a-correlation-of-np.float64-0.81.",
+    "href": "projects/project1/index.html#headerets-investigate-the-relationship-between-fuel-efficiency-mpg-and-engine-displacement-disp-from-the-mtcars-dataset.-those-variables-have-a-correlation-of-np.float64-0.81.",
+    "title": "Analysis of Cars",
+    "section": "Headeret’s investigate the relationship between fuel efficiency (mpg) and engine displacement (disp) from the mtcars dataset. Those variables have a correlation of np.float64(-0.81).",
+    "text": "Headeret’s investigate the relationship between fuel efficiency (mpg) and engine displacement (disp) from the mtcars dataset. Those variables have a correlation of np.float64(-0.81)."
+  },
+  {
+    "objectID": "Presentation.html#research-question",
+    "href": "Presentation.html#research-question",
+    "title": "Car Performance Analysis",
+    "section": "Research Question",
+    "text": "Research Question\nHow does engine displacement relate to fuel efficiency?"
+  },
+  {
+    "objectID": "Presentation.html#dataset",
+    "href": "Presentation.html#dataset",
+    "title": "Car Performance Analysis",
+    "section": "Dataset",
+    "text": "Dataset\nWe use the mpg dataset, which includes: - miles per gallon - displacement - horsepower - origin - model year"
+  },
+  {
+    "objectID": "Presentation.html#visualization",
+    "href": "Presentation.html#visualization",
+    "title": "Car Performance Analysis",
+    "section": "Visualization",
+    "text": "Visualization\n#| echo: false #| warning: false #| message: false\nimport seaborn as sns import matplotlib.pyplot as plt\ndf = sns.load_dataset(“mpg”).dropna()\nplt.figure() sns.scatterplot(x=“mpg”, y=“displacement”, hue=“origin”, size=“horsepower”, data=df) plt.title(“Fuel Efficiency vs Engine Displacement”) plt.xlabel(“Miles per Gallon”) plt.ylabel(“Engine Displacement”) plt.show()"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "🎓 Education",
+    "text": "🎓 Education\n\nUniversity of California, San Diego M.S. in Business Analytics\nJSS Academy of Technical Education, Bangalore B.E. in Computer Science and Engineering"
+  },
+  {
+    "objectID": "about.html#what-i-enjoy-working-on",
+    "href": "about.html#what-i-enjoy-working-on",
+    "title": "About",
+    "section": "💡 What I Enjoy Working On",
+    "text": "💡 What I Enjoy Working On\n\nData analysis and visualization\nStatistical modeling and inference\nMachine learning applications\nBuilding end-to-end data projects\n\nI especially enjoy projects where I can not only build models but also communicate insights clearly, whether through visualizations, reports, or dashboards."
+  },
+  {
+    "objectID": "about.html#technical-skills",
+    "href": "about.html#technical-skills",
+    "title": "About",
+    "section": "🛠️ Technical Skills",
+    "text": "🛠️ Technical Skills\n\nLanguages: Python, SQL\nLibraries & Tools: Pandas, NumPy, Seaborn, Matplotlib\nOther Tools: Git, Jupyter, Quarto"
+  },
+  {
+    "objectID": "about.html#beyond-academics",
+    "href": "about.html#beyond-academics",
+    "title": "About",
+    "section": "Beyond Academics",
+    "text": "Beyond Academics\nOutside of academics, I enjoy:\n\nTeaching and helping others understand technical concepts\nExploring new tools and technologies.\nWorking on projects that combine creativity with analytics"
+  },
+  {
+    "objectID": "about.html#get-in-touch",
+    "href": "about.html#get-in-touch",
+    "title": "About Me",
+    "section": "📫 Get in Touch",
+    "text": "📫 Get in Touch\n\nLinkedIn: https://www.linkedin.com/\nGitHub: https://github.com/\nEmail: your_email@ucsd.edu\n\n\nThanks for visiting my website!"
+  },
+  {
+    "objectID": "about.html#im-passionate-about-using-data-to-solve-real-world-problems-especially-when-it-involves-turning-messy-datasets-into-clear-actionable-insights.-my-interests-lie-in-data-science-statistical-modeling-and-machine-learning-and-i-enjoy-working-on-projects-that-combine-technical-depth-with-practical-impact.",
+    "href": "about.html#im-passionate-about-using-data-to-solve-real-world-problems-especially-when-it-involves-turning-messy-datasets-into-clear-actionable-insights.-my-interests-lie-in-data-science-statistical-modeling-and-machine-learning-and-i-enjoy-working-on-projects-that-combine-technical-depth-with-practical-impact.",
+    "title": "About Me",
+    "section": "I’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact.",
+    "text": "I’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact."
+  },
+  {
+    "objectID": "presentation.html#overview",
+    "href": "presentation.html#overview",
+    "title": "Customized Quarto Website",
+    "section": "Overview",
+    "text": "Overview\n\nBuilt a personal website using Quarto\nIncludes About, Projects, and Resume pages\nUsed custom CSS for styling and layout"
+  },
+  {
+    "objectID": "presentation.html#website-demo",
+    "href": "presentation.html#website-demo",
+    "title": "Customized Quarto Website",
+    "section": "Website Demo",
+    "text": "Website Demo\nI will now demonstrate my website:\n\nAbout page (profile + links)\nResume page (embedded PDF)\nProject page (data analysis + visualization)"
+  },
+  {
+    "objectID": "presentation.html#key-features-takeaways",
+    "href": "presentation.html#key-features-takeaways",
+    "title": "Customized Quarto Website",
+    "section": "Key Features & Takeaways",
+    "text": "Key Features & Takeaways\n\nCustomized design using CSS\nIntegrated data analysis with Python\nUsed Quarto for both website and presentation\n\nThis project shows how Quarto can be used to build clean, professional data-focused websites."
+  },
+  {
+    "objectID": "presentation.html#my-quarto-website",
+    "href": "presentation.html#my-quarto-website",
+    "title": "Customized Quarto Website",
+    "section": "👩‍💻 My Quarto Website",
+    "text": "👩‍💻 My Quarto Website\nBuilt with Quarto and customized with CSS\n\nPersonal About page\nEmbedded Resume\nProject analysis page with Python visualization"
+  },
+  {
+    "objectID": "presentation.html#what-i-customized",
+    "href": "presentation.html#what-i-customized",
+    "title": "Customized Quarto Website",
+    "section": "✨ What I Customized",
+    "text": "✨ What I Customized\n\nAdded custom colors, typography, and layout styling\nBuilt a personal About page with profile links\nEmbedded my resume directly into the site\nCreated a project page with data visualization and interpretation"
+  },
+  {
+    "objectID": "presentation.html#key-takeaways",
+    "href": "presentation.html#key-takeaways",
+    "title": "Customized Quarto Website",
+    "section": "🚀 Key Takeaways",
+    "text": "🚀 Key Takeaways\nThis project shows how Quarto can be used to create both a professional website and a RevealJS presentation.\nDemo Highlights\n\nAbout page\nResume page\nProject page\n\nThank you!"
+  },
+  {
+    "objectID": "projects/project2/index.html",
+    "href": "projects/project2/index.html",
+    "title": "Analysis of Student Performance",
+    "section": "",
+    "text": "This analysis explores how study habits and attendance influence student performance. Understanding these relationships can help identify key factors that drive academic success."
+  },
+  {
+    "objectID": "projects/project2/index.html#sub-header",
+    "href": "projects/project2/index.html#sub-header",
+    "title": "Analysis of Student Performance",
+    "section": "",
+    "text": "This analysis explores the relationship between study habits and student performance.\nHere is a plot:\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nnp.random.seed(42)\n\nn = 150\nstudy_hours = np.random.randint(1, 10, n)\nattendance = np.random.randint(50, 100, n)\n\nscore = 5 * study_hours + 0.5 * attendance + np.random.normal(0, 5, n)\n\ndf = pd.DataFrame({\n    \"study_hours\": study_hours,\n    \"attendance\": attendance,\n    \"score\": score\n})\n\nplt.scatter(df[\"study_hours\"], df[\"score\"])\nplt.xlabel(\"Study Hours\")\nplt.ylabel(\"Final Score\")\nplt.title(\"Study Hours vs Performance\")\nplt.show()"
+  },
+  {
+    "objectID": "projects/project2/index.html#introduction",
+    "href": "projects/project2/index.html#introduction",
+    "title": "Analysis of Student Performance",
+    "section": "",
+    "text": "This analysis explores how study habits and attendance influence student performance. Understanding these relationships can help identify key factors that drive academic success."
+  },
+  {
+    "objectID": "projects/project2/index.html#study-hours-vs-performance",
+    "href": "projects/project2/index.html#study-hours-vs-performance",
+    "title": "Analysis of Student Performance",
+    "section": "Study Hours vs Performance",
+    "text": "Study Hours vs Performance\nThe scatter plot below shows the relationship between study hours and final exam scores.\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nnp.random.seed(42)\n\nn = 150\nstudy_hours = np.random.randint(1, 10, n)\nattendance = np.random.randint(50, 100, n)\n\nscore = 5 * study_hours + 0.5 * attendance + np.random.normal(0, 5, n)\n\ndf = pd.DataFrame({\n    \"study_hours\": study_hours,\n    \"attendance\": attendance,\n    \"score\": score\n})\n\nplt.figure()\nplt.scatter(df[\"study_hours\"], df[\"score\"])\nplt.xlabel(\"Study Hours\")\nplt.ylabel(\"Final Score\")\nplt.title(\"Study Hours vs Performance\")\nplt.show()"
+  },
+  {
+    "objectID": "resume.html#resume",
+    "href": "resume.html#resume",
+    "title": "My Resume",
+    "section": "",
+    "text": "PDFs and resumes\nYouTube or Vimeo videos\nGoogle Maps\nanother webpage\ndashboards or reports\nforms from another service\ncalendars or booking widgets\npayment or login flows in some cases\ndocs/previews from other platforms"
+  }
+]

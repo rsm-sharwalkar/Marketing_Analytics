@@ -1,0 +1,46 @@
+---
+title: "About"
+---
+
+Hi, I'm Shalini Harwalkar, a Master's student in Business Analytics at UC San Diego with a background in Computer Science and Engineering.
+
+I’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact.
+
+---
+
+## 🎓 Education
+
+- **University of California, San Diego**
+  M.S. in Business Analytics
+
+- **JSS Academy of Technical Education, Bangalore**
+  B.E. in Computer Science and Engineering
+
+---
+
+## 💡 What I Enjoy Working On
+
+- Data analysis and visualization
+- Statistical modeling and inference
+- Machine learning applications
+- Building end-to-end data projects
+
+I especially enjoy projects where I can not only build models but also **communicate insights clearly**, whether through visualizations, reports, or dashboards.
+
+---
+
+## 🛠️ Technical Skills
+
+- **Languages:** Python, SQL
+- **Libraries & Tools:** Pandas, NumPy, Seaborn, Matplotlib
+- **Other Tools:** Git, Jupyter, Quarto
+
+---
+
+## Beyond Academics
+
+Outside of academics, I enjoy:
+
+- Teaching and helping others understand technical concepts
+- Exploring new tools and technologies.
+- Working on projects that combine creativity with analytics

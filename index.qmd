@@ -1,0 +1,18 @@
+---
+title: "Shalini Harwalkar"
+image: "Shalini.jpeg"
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:sharwalkar@ucsd.edu
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/shalinih
+    - icon: github
+      text: GitHub
+      href: https://github.com/rsm-sharwalkar?tab=repositories
+---
+
+Welcome to my personal website!
