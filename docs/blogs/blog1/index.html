@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shalini Harwalkar">
-<meta name="dcterms.date" content="2026-03-04">
+<meta name="dcterms.date" content="2026-04-15">
 
-<title>Analysis of Cars – My Website</title>
+<title>What I Learned About A/B Testing—and Why It’s Trickier Than I Thought – My Website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,10 +22,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,6 +105,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -128,8 +166,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sub-header" id="toc-sub-header" class="nav-link active" data-scroll-target="#sub-header">Sub-Header</a></li>
-  <li><a href="#header" id="toc-header" class="nav-link" data-scroll-target="#header">Header</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#simulating-an-ab-test" id="toc-simulating-an-ab-test" class="nav-link" data-scroll-target="#simulating-an-ab-test">Simulating an A/B Test</a></li>
+  <li><a href="#sampling-variability" id="toc-sampling-variability" class="nav-link" data-scroll-target="#sampling-variability">Sampling Variability</a></li>
+  <li><a href="#law-of-large-numbers" id="toc-law-of-large-numbers" class="nav-link" data-scroll-target="#law-of-large-numbers">Law of Large Numbers</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#hypothesis-testing-and-p-values" id="toc-hypothesis-testing-and-p-values" class="nav-link" data-scroll-target="#hypothesis-testing-and-p-values">Hypothesis Testing and p-values</a></li>
+  <li><a href="#bootstrap-a-more-intuitive-approach" id="toc-bootstrap-a-more-intuitive-approach" class="nav-link" data-scroll-target="#bootstrap-a-more-intuitive-approach">Bootstrap: A More Intuitive Approach</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final Thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -138,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis of Cars</h1>
+<h1 class="title">What I Learned About A/B Testing—and Why It’s Trickier Than I Thought</h1>
 </div>
 
 
@@ -155,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 4, 2026</p>
+      <p class="date">April 15, 2026</p>
     </div>
   </div>
   
@@ -167,29 +211,243 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sub-header" class="level2">
-<h2 class="anchored" data-anchor-id="sub-header">Sub-Header</h2>
-<p>Here is a plot:</p>
-<div id="d20619fc" class="cell" data-message="false" data-execution_count="1">
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Imagine you’re running a website and trying to improve conversions. You change the call-to-action button from <strong>“Sign up now”</strong> to <strong>“Get started for free”</strong>, run an A/B test, and see that version B performs better.</p>
+<p>Easy decision, right? At first glance, it feels like it should be, but once you think about randomness in data, it’s not that simple.</p>
+<p>The reality is that data is noisy. Even if one version is truly better, the results you observe depend on randomness. This is where frequentist statistics comes in—it helps us separate real effects from random variation.</p>
+<p>In this post, I walk through an A/B testing example using simulations to build intuition for key ideas like sampling variability, the law of large numbers, confidence intervals, hypothesis testing, and bootstrap uncertainty.</p>
+</section>
+<section id="simulating-an-ab-test" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-an-ab-test">Simulating an A/B Test</h2>
+<p>Each user either converts or does not convert, which we can model as a Bernoulli process.</p>
+<div id="17c6b9fe" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'ggplot'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>n_A <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>n_B <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p_A <span class="op">=</span> <span class="fl">0.10</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>p_B <span class="op">=</span> <span class="fl">0.12</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, p_A, n_A)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, p_B, n_B)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>conv_A <span class="op">=</span> A.mean()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>conv_B <span class="op">=</span> B.mean()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> conv_B <span class="op">-</span> conv_A</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Metric"</span>: [<span class="st">"Conversion A"</span>, <span class="st">"Conversion B"</span>, <span class="st">"Difference (B - A)"</span>],</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Value"</span>: [<span class="bu">round</span>(conv_A,<span class="dv">4</span>), <span class="bu">round</span>(conv_B,<span class="dv">4</span>), <span class="bu">round</span>(diff,<span class="dv">4</span>)]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Metric</th>
+<th data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Conversion A</td>
+<td>0.100</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Conversion B</td>
+<td>0.112</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Difference (B - A)</td>
+<td>0.012</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>In this simulation, version B shows a higher conversion rate than version A. However, this is only one realization of a random process. If we repeated the experiment, the observed difference could change.</p>
+</section>
+<section id="sampling-variability" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-variability">Sampling Variability</h2>
+<p>To see how much results fluctuate, we simulate the experiment many times.</p>
+<div id="59593d93" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-2-output-1.png" width="593" height="429" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-3-output-1.png" width="596" height="454" class="figure-img"></p>
 </figure>
 </div>
 </div>
+</div>
+<p>Even though version B is better on average, the observed lift varies across simulations. This made me realize that a single experiment really doesn’t tell the full story.</p>
+</section>
+<section id="law-of-large-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="law-of-large-numbers">Law of Large Numbers</h2>
+<p>We can reduce variability by increasing the sample size.</p>
+<div id="c34c079a" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-2-output-2.png" width="593" height="449" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-4-output-1.png" width="600" height="454" class="figure-img"></p>
 </figure>
+</div>
+</div>
+</div>
+<p>With small samples, estimates fluctuate significantly. As the sample size increases, estimates stabilize and approach the true conversion rate.</p>
+</section>
+<section id="confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h2>
+<p>A point estimate alone is not enough—we need to quantify uncertainty.</p>
+<div id="774a6313" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> np.sqrt(conv_A <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> conv_A) <span class="op">/</span> n_A <span class="op">+</span> conv_B <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> conv_B) <span class="op">/</span> n_B)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> diff <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> se</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> diff <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> se</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ci_table <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lower Bound"</span>: [<span class="bu">round</span>(lower,<span class="dv">4</span>)],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Upper Bound"</span>: [<span class="bu">round</span>(upper,<span class="dv">4</span>)]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ci_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Lower Bound</th>
+<th data-quarto-table-cell-role="th">Upper Bound</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>-0.015</td>
+<td>0.039</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>I found it helpful to think of this interval as a range of plausible values. If we repeated this process many times, about 95% of the intervals constructed this way would contain the true value.</p>
+</section>
+<section id="hypothesis-testing-and-p-values" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-and-p-values">Hypothesis Testing and p-values</h2>
+<p>We formally test whether the observed difference could be due to chance.</p>
+<ul>
+<li><strong>Null hypothesis (H0):</strong> both versions have the same conversion rate</li>
+<li><strong>Alternative hypothesis (HA):</strong> the conversion rates differ</li>
+</ul>
+<div id="039d4b06" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_pool <span class="op">=</span> (A.<span class="bu">sum</span>() <span class="op">+</span> B.<span class="bu">sum</span>()) <span class="op">/</span> (n_A <span class="op">+</span> n_B)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>se_null <span class="op">=</span> np.sqrt(p_pool <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p_pool) <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>n_A <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>n_B))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> diff <span class="op">/</span> se_null</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> norm.cdf(<span class="bu">abs</span>(z)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>test_results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Z Statistic"</span>: [<span class="bu">round</span>(z,<span class="dv">4</span>)],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"P-value"</span>: [<span class="bu">round</span>(p_value,<span class="dv">6</span>)]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>test_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Z Statistic</th>
+<th data-quarto-table-cell-role="th">P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.8717</td>
+<td>0.383397</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>A small p-value suggests that the observed difference would be pretty unlikely if there were actually no difference—but it still doesn’t prove that B is better.</p>
+</section>
+<section id="bootstrap-a-more-intuitive-approach" class="level2">
+<h2 class="anchored" data-anchor-id="bootstrap-a-more-intuitive-approach">Bootstrap: A More Intuitive Approach</h2>
+<p>The bootstrap provides a simulation-based way to estimate uncertainty. What I like about this approach is that it relies on the observed data itself rather than assumptions about the underlying distribution.</p>
+<div id="3a551944" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.png" width="596" height="454" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Lower Bound</th>
+<th data-quarto-table-cell-role="th">Upper Bound</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>-0.014</td>
+<td>0.04</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>
 </section>
-<section id="header" class="level2">
-<h2 class="anchored" data-anchor-id="header">Header</h2>
-<p>Let’s investigate the relationship between fuel efficiency (<code>mpg</code>) and engine displacement (<code>disp</code>) from the <code>mtcars</code> dataset. Those variables have a correlation of np.float64(-0.81).</p>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>Version B seems to perform better in this simulation, but the improvement is pretty small and there’s still a lot of uncertainty. In practice, decisions should consider both statistical evidence and business impact. While the p-value suggests statistical significance, it does not capture the practical importance of the result, which is critical in real-world decision-making.</p>
+<p>Frequentist methods help us quantify uncertainty and avoid overconfidence in noisy data.</p>
 
 
 </section>
