@@ -3,7 +3,7 @@ project:
   output-dir: docs
   resources:
     - images/*
-    - Files/*
+    - files/*
 
 website:
   title: "My Website"
