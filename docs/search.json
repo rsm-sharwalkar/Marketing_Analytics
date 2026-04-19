@@ -1,5 +1,75 @@
 [
   {
+    "objectID": "Blog.html",
+    "href": "Blog.html",
+    "title": "My Blogs",
+    "section": "",
+    "text": "What I Learned About A/B Testing—and Why It’s Trickier Than I Thought\n\n\n\n\n\n\nShalini Harwalkar\n\n\nApr 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Shalini Harwalkar, a Master’s student in Business Analytics at UC San Diego with a background in Computer Science and Engineering.\nI’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "🎓 Education",
+    "text": "🎓 Education\n\nUniversity of California, San Diego M.S. in Business Analytics\nJSS Academy of Technical Education, Bangalore B.E. in Computer Science and Engineering"
+  },
+  {
+    "objectID": "about.html#what-i-enjoy-working-on",
+    "href": "about.html#what-i-enjoy-working-on",
+    "title": "About",
+    "section": "💡 What I Enjoy Working On",
+    "text": "💡 What I Enjoy Working On\n\nData analysis and visualization\nStatistical modeling and inference\nMachine learning applications\nBuilding end-to-end data projects\n\nI especially enjoy projects where I can not only build models but also communicate insights clearly, whether through visualizations, reports, or dashboards."
+  },
+  {
+    "objectID": "about.html#technical-skills",
+    "href": "about.html#technical-skills",
+    "title": "About",
+    "section": "🛠️ Technical Skills",
+    "text": "🛠️ Technical Skills\n\nLanguages: Python, SQL\nLibraries & Tools: Pandas, NumPy, Seaborn, Matplotlib\nOther Tools: Git, Jupyter, Quarto"
+  },
+  {
+    "objectID": "about.html#beyond-academics",
+    "href": "about.html#beyond-academics",
+    "title": "About",
+    "section": "Beyond Academics",
+    "text": "Beyond Academics\nOutside of academics, I enjoy:\n\nTeaching and helping others understand technical concepts\nExploring new tools and technologies.\nWorking on projects that combine creativity with analytics"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "My Projects",
+    "section": "",
+    "text": "Analysis of Cars\n\n\n\n\n\n\nShalini Harwalkar\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of Student Performance\n\n\n\n\n\n\nShalini Harwalkar\n\n\nApr 1, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/project1/index.html",
+    "href": "projects/project1/index.html",
+    "title": "Analysis of Cars",
+    "section": "",
+    "text": "Here is a plot:"
+  },
+  {
+    "objectID": "projects/project1/index.html#sub-header",
+    "href": "projects/project1/index.html#sub-header",
+    "title": "Analysis of Cars",
+    "section": "",
+    "text": "Here is a plot:"
+  },
+  {
+    "objectID": "projects/project1/index.html#header",
+    "href": "projects/project1/index.html#header",
+    "title": "Analysis of Cars",
+    "section": "Header",
+    "text": "Header\nLet’s investigate the relationship between fuel efficiency (mpg) and engine displacement (disp) from the mtcars dataset. Those variables have a correlation of np.float64(-0.81)."
+  },
+  {
     "objectID": "blogs/blog1/index.html",
     "href": "blogs/blog1/index.html",
     "title": "What I Learned About A/B Testing—and Why It’s Trickier Than I Thought",
@@ -63,48 +133,6 @@
     "text": "Final Thoughts\nVersion B seems to perform better in this simulation, but the improvement is pretty small and there’s still a lot of uncertainty. In practice, decisions should consider both statistical evidence and business impact. While the p-value suggests statistical significance, it does not capture the practical importance of the result, which is critical in real-world decision-making.\nFrequentist methods help us quantify uncertainty and avoid overconfidence in noisy data."
   },
   {
-    "objectID": "Blog.html",
-    "href": "Blog.html",
-    "title": "My Blogs",
-    "section": "",
-    "text": "What I Learned About A/B Testing—and Why It’s Trickier Than I Thought\n\n\n\n\n\n\nShalini Harwalkar\n\n\nApr 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Hi, I’m Shalini Harwalkar, a Master’s student in Business Analytics at UC San Diego with a background in Computer Science and Engineering.\nI’m passionate about using data to solve real-world problems, especially when it involves turning messy datasets into clear, actionable insights. My interests lie in data science, statistical modeling, and machine learning, and I enjoy working on projects that combine technical depth with practical impact."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "🎓 Education",
-    "text": "🎓 Education\n\nUniversity of California, San Diego M.S. in Business Analytics\nJSS Academy of Technical Education, Bangalore B.E. in Computer Science and Engineering"
-  },
-  {
-    "objectID": "about.html#what-i-enjoy-working-on",
-    "href": "about.html#what-i-enjoy-working-on",
-    "title": "About",
-    "section": "💡 What I Enjoy Working On",
-    "text": "💡 What I Enjoy Working On\n\nData analysis and visualization\nStatistical modeling and inference\nMachine learning applications\nBuilding end-to-end data projects\n\nI especially enjoy projects where I can not only build models but also communicate insights clearly, whether through visualizations, reports, or dashboards."
-  },
-  {
-    "objectID": "about.html#technical-skills",
-    "href": "about.html#technical-skills",
-    "title": "About",
-    "section": "🛠️ Technical Skills",
-    "text": "🛠️ Technical Skills\n\nLanguages: Python, SQL\nLibraries & Tools: Pandas, NumPy, Seaborn, Matplotlib\nOther Tools: Git, Jupyter, Quarto"
-  },
-  {
-    "objectID": "about.html#beyond-academics",
-    "href": "about.html#beyond-academics",
-    "title": "About",
-    "section": "Beyond Academics",
-    "text": "Beyond Academics\nOutside of academics, I enjoy:\n\nTeaching and helping others understand technical concepts\nExploring new tools and technologies.\nWorking on projects that combine creativity with analytics"
-  },
-  {
     "objectID": "projects/project2/index.html",
     "href": "projects/project2/index.html",
     "title": "Analysis of Student Performance",
@@ -126,46 +154,18 @@
     "text": "Study Hours vs Performance\nThe scatter plot below shows the relationship between study hours and final exam scores.\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nnp.random.seed(42)\n\nn = 150\nstudy_hours = np.random.randint(1, 10, n)\nattendance = np.random.randint(50, 100, n)\n\nscore = 5 * study_hours + 0.5 * attendance + np.random.normal(0, 5, n)\n\ndf = pd.DataFrame({\n    \"study_hours\": study_hours,\n    \"attendance\": attendance,\n    \"score\": score\n})\n\nplt.figure()\nplt.scatter(df[\"study_hours\"], df[\"score\"])\nplt.xlabel(\"Study Hours\")\nplt.ylabel(\"Final Score\")\nplt.title(\"Study Hours vs Performance\")\nplt.show()"
   },
   {
-    "objectID": "projects/project1/index.html",
-    "href": "projects/project1/index.html",
-    "title": "Analysis of Cars",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shalini Harwalkar",
     "section": "",
-    "text": "Here is a plot:"
-  },
-  {
-    "objectID": "projects/project1/index.html#sub-header",
-    "href": "projects/project1/index.html#sub-header",
-    "title": "Analysis of Cars",
-    "section": "",
-    "text": "Here is a plot:"
-  },
-  {
-    "objectID": "projects/project1/index.html#header",
-    "href": "projects/project1/index.html#header",
-    "title": "Analysis of Cars",
-    "section": "Header",
-    "text": "Header\nLet’s investigate the relationship between fuel efficiency (mpg) and engine displacement (disp) from the mtcars dataset. Those variables have a correlation of np.float64(-0.81)."
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "My Projects",
-    "section": "",
-    "text": "Analysis of Cars\n\n\n\n\n\n\nShalini Harwalkar\n\n\nMar 4, 2026\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of Student Performance\n\n\n\n\n\n\nShalini Harwalkar\n\n\nApr 1, 2026\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Harwalkar_Shalini-revealjs_intro.html",
-    "href": "Harwalkar_Shalini-revealjs_intro.html",
-    "title": "Customized Quarto Website",
-    "section": "",
-    "text": "Personal About page\nEmbedded Resume\nProject analysis page with Python visualization"
+    "text": "Welcome to my personal website!"
   },
   {
     "objectID": "Harwalkar_Shalini-revealjs_intro.html#my-quarto-website",
     "href": "Harwalkar_Shalini-revealjs_intro.html#my-quarto-website",
     "title": "Customized Quarto Website",
-    "section": "",
-    "text": "Personal About page\nEmbedded Resume\nProject analysis page with Python visualization"
+    "section": "👩‍💻 My Quarto Website",
+    "text": "👩‍💻 My Quarto Website\nBuilt with Quarto and customized with CSS\n\nPersonal About page\nEmbedded Resume\nProject analysis page with Python visualization"
   },
   {
     "objectID": "Harwalkar_Shalini-revealjs_intro.html#what-i-customized",
@@ -179,6 +179,6 @@
     "href": "Harwalkar_Shalini-revealjs_intro.html#key-takeaways",
     "title": "Customized Quarto Website",
     "section": "🚀 Key Takeaways",
-    "text": "🚀 Key Takeaways\nThis project shows how Quarto can be used to create both a professional website and a RevealJS presentation.\n\nDemo Highlights\n\nAbout page\nResume page\nProject page\n\nThank you!"
+    "text": "🚀 Key Takeaways\nThis project shows how Quarto can be used to create both a professional website and a RevealJS presentation.\nDemo Highlights\n\nAbout page\nResume page\nProject page\n\nThank you!"
   }
 ]
