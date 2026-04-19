@@ -6,6 +6,7 @@ project:
 
 website:
   title: "My Website"
+  site-url: "https://rsm-sharwalkar.github.io/Marketing_Analytics/"
   navbar:
     left:
       - href: index.qmd

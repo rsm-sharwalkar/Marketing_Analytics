@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="simulating-an-ab-test" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-an-ab-test">Simulating an A/B Test</h2>
 <p>Each user either converts or does not convert, which we can model as a Bernoulli process.</p>
-<div id="7a184cb5" class="cell" data-execution_count="1">
+<div id="4183d02c" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sampling-variability" class="level2">
 <h2 class="anchored" data-anchor-id="sampling-variability">Sampling Variability</h2>
 <p>To see how much results fluctuate, we simulate the experiment many times.</p>
-<div id="c0d9c1ad" class="cell" data-execution_count="2">
+<div id="3ac384be" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="law-of-large-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="law-of-large-numbers">Law of Large Numbers</h2>
 <p>We can reduce variability by increasing the sample size.</p>
-<div id="fbfe057e" class="cell" data-execution_count="3">
+<div id="329a13d2" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="confidence-intervals" class="level2">
 <h2 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h2>
 <p>A point estimate alone is not enough—we need to quantify uncertainty.</p>
-<div id="48277911" class="cell" data-execution_count="4">
+<div id="5f3c8e00" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> np.sqrt(conv_A <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> conv_A) <span class="op">/</span> n_A <span class="op">+</span> conv_B <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> conv_B) <span class="op">/</span> n_B)</span>
@@ -366,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Null hypothesis (H0):</strong> both versions have the same conversion rate</li>
 <li><strong>Alternative hypothesis (HA):</strong> the conversion rates differ</li>
 </ul>
-<div id="73fa58b7" class="cell" data-execution_count="5">
+<div id="b7b63d08" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_pool <span class="op">=</span> (A.<span class="bu">sum</span>() <span class="op">+</span> B.<span class="bu">sum</span>()) <span class="op">/</span> (n_A <span class="op">+</span> n_B)</span>
@@ -411,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bootstrap-a-more-intuitive-approach" class="level2">
 <h2 class="anchored" data-anchor-id="bootstrap-a-more-intuitive-approach">Bootstrap: A More Intuitive Approach</h2>
 <p>The bootstrap provides a simulation-based way to estimate uncertainty. What I like about this approach is that it relies on the observed data itself rather than assumptions about the underlying distribution.</p>
-<div id="a1d4943b" class="cell" data-execution_count="6">
+<div id="1f3fd190" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/rsm-sharwalkar\.github\.io\/Marketing_Analytics\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

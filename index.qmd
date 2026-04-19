@@ -1,6 +1,6 @@
 ---
 title: "Shalini Harwalkar"
-image: files/Shalini.jpeg
+image: https://rsm-sharwalkar.github.io/Marketing_Analytics/files/Shalini.jpeg
 about:
   template: jolla
   links:
