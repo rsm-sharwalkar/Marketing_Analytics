@@ -1,6 +1,6 @@
 ---
 title: "Shalini Harwalkar"
-image: Files/Shalini.jpeg
+image: "Files/Shalini.jpeg"
 about:
   template: jolla
   links:
