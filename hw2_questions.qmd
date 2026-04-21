@@ -1,0 +1,152 @@
+---
+title: "Replication of Card and Krueger (1994)"
+subtitle: "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania"
+author: "Shalini Harwalkar"
+date: today
+format: html
+jupyter: python3
+---
+
+## Introduction
+
+This post replicates part of Card and Krueger (1994), which studies whether New Jersey’s 1992 minimum wage increase reduced employment in fast-food restaurants relative to nearby Pennsylvania. The paper is a classic difference-in-differences design: New Jersey is the treated group, Pennsylvania is the comparison group, and employment is observed before and after the policy change. :contentReference[oaicite:1]{index=1}
+
+I do three things here. First, I load and clean the original data. Second, I replicate the main difference-in-differences result using full-time-equivalent employment. Third, I add a graph of mean employment before and after the policy change. The original data archive contains survey data for 410 restaurants, and the public replication script I am following computes FTE as full-time workers plus managers plus half of part-time workers. :contentReference[oaicite:2]{index=2}
+
+## Load the Data
+
+```{python}
+import pandas as pd
+import numpy as np
+import requests
+import zipfile
+from io import BytesIO, TextIOWrapper
+
+zip_url = "https://davidcard.berkeley.edu/data_sets/njmin.zip"
+
+r = requests.get(zip_url, timeout=60)
+r.raise_for_status()
+
+z = zipfile.ZipFile(BytesIO(r.content))
+
+# read raw data exactly as whitespace-separated text
+df = pd.read_csv(
+    z.open("public.dat"),
+    sep=r"\s+",
+    engine="python",
+    header=None
+).apply(lambda s: pd.to_numeric(s, errors="coerce"))
+
+# read column names from codebook using the same line slices used in a public replication
+codebook_lines = [line for line in TextIOWrapper(z.open("codebook"), encoding="cp437")]
+codes = codebook_lines[7:11] + codebook_lines[13:19] + codebook_lines[21:38] + codebook_lines[40:59]
+cols = [line.strip().split()[0].lower() for line in codes]
+
+df.columns = cols
+
+print("Shape:", df.shape)
+print("\nFirst 20 columns:")
+print(df.columns.tolist()[:20])
+
+df.head()
+```
+
+Create Employment Measures
+```{python}
+# Full-time-equivalent employment
+df["fte"] = df["empft"] + 0.5 * df["emppt"] + df["nmgrs"]
+df["fte_after"] = df["empft2"] + 0.5 * df["emppt2"] + df["nmgrs2"]
+
+# Keep the columns needed for the main replication
+df_clean = df[["state", "fte", "fte_after"]].copy()
+df_clean = df_clean.dropna()
+
+# Make state numeric first, then labels for display
+df_clean["state"] = pd.to_numeric(df_clean["state"], errors="coerce")
+df_clean = df_clean.dropna(subset=["state"])
+df_clean["state"] = df_clean["state"].astype(int)
+
+df_clean["state_label"] = df_clean["state"].map({0: "PA", 1: "NJ"})
+df_clean["delta_fte"] = df_clean["fte_after"] - df_clean["fte"]
+
+print("Clean sample size:", len(df_clean))
+df_clean.head()
+```
+
+Replicate the Main Difference-in-Differences Result
+```{python}
+group_means = (
+    df_clean
+    .groupby("state_label", as_index=False)
+    .agg(
+        mean_before=("fte", "mean"),
+        mean_after=("fte_after", "mean"),
+        change=("delta_fte", "mean"),
+        n=("delta_fte", "size")
+    )
+)
+
+group_means
+pa_change = group_means.loc[group_means["state_label"] == "PA", "change"].iloc[0]
+nj_change = group_means.loc[group_means["state_label"] == "NJ", "change"].iloc[0]
+did_estimate = nj_change - pa_change
+
+print("PA change in FTE:", round(pa_change, 3))
+print("NJ change in FTE:", round(nj_change, 3))
+print("Difference-in-differences estimate:", round(did_estimate, 3))
+```
+
+Regression Version of the DiD
+```{python}
+import statsmodels.formula.api as smf
+
+before_df = df_clean[["state", "state_label", "fte"]].copy()
+before_df["post"] = 0
+before_df["employment"] = before_df["fte"]
+
+after_df = df_clean[["state", "state_label", "fte_after"]].copy()
+after_df["post"] = 1
+after_df["employment"] = after_df["fte_after"]
+
+long_df = pd.concat([
+    before_df[["state", "state_label", "post", "employment"]],
+    after_df[["state", "state_label", "post", "employment"]]
+], ignore_index=True)
+
+did_model = smf.ols("employment ~ state + post + state:post", data=long_df).fit()
+print(did_model.summary())
+```
+
+In this regression, the coefficient on state:post is the DiD estimate. This is the regression version of the same before-versus-after comparison shown in the group means table. The public Python replication I used also builds the analysis around FTE before and after, then estimates DiD-style models using New Jersey, time, and their interaction.
+
+## Additional Analysis: Graph
+```{python}
+import matplotlib.pyplot as plt
+
+plot_df = (
+    long_df
+    .groupby(["state_label", "post"], as_index=False)
+    .agg(mean_employment=("employment", "mean"))
+)
+
+plot_df["period"] = plot_df["post"].map({0: "Before", 1: "After"})
+
+for state_name in ["PA", "NJ"]:
+    sub = plot_df[plot_df["state_label"] == state_name]
+    plt.plot(sub["period"], sub["mean_employment"], marker="o", label=state_name)
+
+plt.xlabel("Period")
+plt.ylabel("Mean FTE Employment")
+plt.title("Mean Employment Before and After the Minimum Wage Increase")
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+
+The graph gives the same intuition visually. If the New Jersey line does not fall relative to the Pennsylvania line, that supports the paper’s result.
+
+## Conclusion
+
+This replication uses the original Card and Krueger data archive, constructs full-time-equivalent employment as empft + 0.5*emppt + nmgrs, and estimates the treatment effect using a simple difference-in-differences design. That setup follows the same core logic used in recent public replications of the paper.
+
+The main quantity of interest is the relative change in employment in New Jersey compared with Pennsylvania. The group means, the DiD estimate, and the regression coefficient on the interaction term all speak to the same question: whether the minimum wage increase reduced employment. Based on Card and Krueger’s original argument, a non-negative estimate would support their conclusion that employment did not fall in New Jersey relative to Pennsylvania.
