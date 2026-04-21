@@ -122,18 +122,22 @@ The key difference-in-differences estimate is the change in New Jersey minus the
 The original SAS file uses a specific sample restriction for this regression. It keeps stores with non-missing employment change and then keeps either permanently closed stores or stores that remained open and have a valid second-wave wage observation.
 
 ```{python}
-table4_df = df[df["demp"].notna()].copy()
-table4_df = table4_df[
-    (table4_df["closed"] == 1) |
-    ((table4_df["closed"] == 0) & (table4_df["dwage"].notna()))
+## Replicate Table 4, column (i)
+table4_df = df[
+    df["emptot"].notna() &
+    df["emptot2"].notna() &
+    df["wage_st"].notna() &
+    df["wage_st2"].notna()
 ].copy()
 
-model1 = smf.ols("demp ~ gap", data=table4_df).fit()
+table4_df["nj"] = (table4_df["state"] == 1).astype(int)
+
+model1 = smf.ols("demp ~ nj", data=table4_df).fit()
 
 pd.DataFrame({
-    "Coefficient": [model1.params["gap"]],
-    "Std. Error": [model1.bse["gap"]]
-}, index=["gap"]).round(3)
+    "Coefficient": [model1.params["nj"]],
+    "Std. Error": [model1.bse["nj"]]
+}, index=["New Jersey dummy"]).round(3)
 ```
 
 ```{python}
@@ -141,7 +145,7 @@ print("N =", int(model1.nobs))
 print("R-squared =", round(model1.rsquared, 3))
 ```
 
-The coefficient on `gap` is positive, which means restaurants that were further below the new minimum wage tended to experience larger employment increases. That goes against the simple prediction that a higher minimum wage should reduce employment.
+The coefficient on the New Jersey dummy is positive. This means employment increased more in New Jersey than in Pennsylvania after the minimum wage increase. This matches the paper’s main result: the 1992 minimum wage increase in New Jersey did not reduce fast-food employment relative to the Pennsylvania comparison group.
 
 ## Additional analysis: graph of mean employment before and after
 
