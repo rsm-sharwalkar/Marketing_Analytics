@@ -119,7 +119,7 @@ The key difference-in-differences estimate is the change in New Jersey minus the
 
 ## Replicate Table 4, column (i)
 
-The original SAS file uses a specific sample restriction for this regression. It keeps stores with non-missing employment change and then keeps either permanently closed stores or stores that remained open and have a valid second-wave wage observation.
+Table 4, column (i) regresses the change in employment on a New Jersey indicator. Following the paper, I restrict the sample to stores with available employment and starting wage data in both waves.
 
 ```{python}
 ## Replicate Table 4, column (i)
