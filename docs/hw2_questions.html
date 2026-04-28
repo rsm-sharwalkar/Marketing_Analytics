@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-the-data">Load the Data</h2>
-<div id="2281d3c6" class="cell" data-execution_count="1">
+<div id="34cf53a0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -247,14 +247,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> cols</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, df.shape)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Prabhlin new Shape:"</span>, df.shape)</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 columns:"</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist()[:<span class="dv">20</span>])</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Shape: (410, 46)
+<pre><code>Prabhlin new Shape: (410, 46)
 
 First 20 columns:
 ['sheet', 'chain', 'co_owned', 'state', 'southj', 'centralj', 'northj', 'pa1', 'pa2', 'shore', 'ncalls', 'empft', 'emppt', 'nmgrs', 'wage_st', 'inctime', 'firstinc', 'bonus', 'pctaff', 'meals']</code></pre>
@@ -419,7 +419,7 @@ First 20 columns:
 </div>
 </div>
 <p>Create Employment Measures</p>
-<div id="516ec7da" class="cell" data-execution_count="2">
+<div id="26925aa7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-time-equivalent employment</span></span>
@@ -507,7 +507,7 @@ First 20 columns:
 </div>
 </div>
 <p>Replicate the Main Difference-in-Differences Result</p>
-<div id="fcb51a2d" class="cell" data-execution_count="3">
+<div id="795b52c6" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>group_means <span class="op">=</span> (</span>
@@ -539,7 +539,7 @@ Difference-in-differences estimate: 2.75</code></pre>
 <p>Employment falls in Pennsylvania but rises slightly in New Jersey over the same period. The positive difference-in-differences estimate implies that employment in New Jersey did not decline relative to the control group after the policy change, which is consistent with Card and Krueger’s conclusion.</p>
 <p>The group means show that average FTE employment did not decrease in New Jersey relative to Pennsylvania after the minimum wage increase. Pennsylvania restaurants experienced a larger decline in employment, while New Jersey restaurants were roughly flat to slightly higher. The DiD estimate of about +2.75 means that New Jersey employment increased by approximately 2.75 FTE workers per restaurant relative to the change in Pennsylvania.</p>
 <p>Regression Version of the DiD</p>
-<div id="e740dd83" class="cell" data-execution_count="4">
+<div id="f53a3510" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -567,7 +567,7 @@ Dep. Variable:             employment   R-squared:                       0.008
 Model:                            OLS   Adj. R-squared:                  0.004
 Method:                 Least Squares   F-statistic:                     1.947
 Date:                Mon, 27 Apr 2026   Prob (F-statistic):              0.121
-Time:                        22:57:13   Log-Likelihood:                -2817.6
+Time:                        23:37:53   Log-Likelihood:                -2817.6
 No. Observations:                 768   AIC:                             5643.
 Df Residuals:                     764   BIC:                             5662.
 Df Model:                           3                                         
@@ -594,7 +594,7 @@ Notes:
 </section>
 <section id="additional-analysis-graph" class="level2">
 <h2 class="anchored" data-anchor-id="additional-analysis-graph">Additional Analysis: Graph</h2>
-<div id="6006f17b" class="cell" data-execution_count="5">
+<div id="d22c0d8e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

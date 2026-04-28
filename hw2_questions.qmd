@@ -46,7 +46,7 @@ cols = [line.strip().split()[0].lower() for line in codes]
 
 df.columns = cols
 
-print("Shape:", df.shape)
+print("Prabhlin new Shape:", df.shape)
 print("\nFirst 20 columns:")
 print(df.columns.tolist()[:20])
 
