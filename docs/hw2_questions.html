@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shalini Harwalkar">
-<meta name="dcterms.date" content="2026-04-20">
+<meta name="dcterms.date" content="2026-04-27">
 
 <title>Replication of Card and Krueger (1994) – My Website</title>
 <style>
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8141ab616839ba6a8eaf14ac300c2aa2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8e47cbb2ecb9bcca5022a9c4c641ddb9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2026</p>
+      <p class="date">April 27, 2026</p>
     </div>
   </div>
   
@@ -211,11 +211,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This post replicates part of Card and Krueger (1994), which studies whether New Jersey’s 1992 minimum wage increase reduced employment in fast-food restaurants relative to nearby Pennsylvania. The paper is a classic difference-in-differences design: New Jersey is the treated group, Pennsylvania is the comparison group, and employment is observed before and after the policy change. :contentReference<span data-index="1">oaicite:1</span></p>
-<p>I do three things here. First, I load and clean the original data. Second, I replicate the main difference-in-differences result using full-time-equivalent employment. Third, I add a graph of mean employment before and after the policy change. The original data archive contains survey data for 410 restaurants, and the public replication script I am following computes FTE as full-time workers plus managers plus half of part-time workers. :contentReference<span data-index="2">oaicite:2</span></p>
+<p>This post does three things. First, it loads and cleans the original data. Second, it replicates the main difference-in-differences result using full-time-equivalent employment. Third, it adds a graph of mean employment before and after the policy change. The original data archive contains survey data for 410 restaurants, and the public replication script used here computes FTE as full-time workers plus managers plus half of part-time workers. :contentReference<span data-index="2">oaicite:2</span></p>
+<p><strong>Key Insight:</strong> The estimated difference-in-differences effect is +2.75 full-time-equivalent employees, suggesting that New Jersey’s minimum wage increase did not reduce fast-food employment relative to Pennsylvania.</p>
 </section>
 <section id="load-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-the-data">Load the Data</h2>
-<div id="aa4fba39" class="cell" data-execution_count="1">
+<div id="34cf53a0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -246,19 +247,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> cols</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, df.shape)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Prabhlin new Shape:"</span>, df.shape)</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 columns:"</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist()[:<span class="dv">20</span>])</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Shape: (410, 46)
+<pre><code>Prabhlin new Shape: (410, 46)
 
 First 20 columns:
 ['sheet', 'chain', 'co_owned', 'state', 'southj', 'centralj', 'northj', 'pa1', 'pa2', 'shore', 'ncalls', 'empft', 'emppt', 'nmgrs', 'wage_st', 'inctime', 'firstinc', 'bonus', 'pctaff', 'meals']</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -418,7 +419,7 @@ First 20 columns:
 </div>
 </div>
 <p>Create Employment Measures</p>
-<div id="03d9179a" class="cell" data-execution_count="2">
+<div id="26925aa7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-time-equivalent employment</span></span>
@@ -443,7 +444,7 @@ First 20 columns:
 <div class="cell-output cell-output-stdout">
 <pre><code>Clean sample size: 384</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -506,7 +507,7 @@ First 20 columns:
 </div>
 </div>
 <p>Replicate the Main Difference-in-Differences Result</p>
-<div id="4c95dcc4" class="cell" data-execution_count="3">
+<div id="795b52c6" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>group_means <span class="op">=</span> (</span>
@@ -535,8 +536,10 @@ NJ change in FTE: 0.467
 Difference-in-differences estimate: 2.75</code></pre>
 </div>
 </div>
+<p>Employment falls in Pennsylvania but rises slightly in New Jersey over the same period. The positive difference-in-differences estimate implies that employment in New Jersey did not decline relative to the control group after the policy change, which is consistent with Card and Krueger’s conclusion.</p>
+<p>The group means show that average FTE employment did not decrease in New Jersey relative to Pennsylvania after the minimum wage increase. Pennsylvania restaurants experienced a larger decline in employment, while New Jersey restaurants were roughly flat to slightly higher. The DiD estimate of about +2.75 means that New Jersey employment increased by approximately 2.75 FTE workers per restaurant relative to the change in Pennsylvania.</p>
 <p>Regression Version of the DiD</p>
-<div id="84e03dbb" class="cell" data-execution_count="4">
+<div id="f53a3510" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -563,8 +566,8 @@ Difference-in-differences estimate: 2.75</code></pre>
 Dep. Variable:             employment   R-squared:                       0.008
 Model:                            OLS   Adj. R-squared:                  0.004
 Method:                 Least Squares   F-statistic:                     1.947
-Date:                Mon, 20 Apr 2026   Prob (F-statistic):              0.121
-Time:                        20:14:35   Log-Likelihood:                -2817.6
+Date:                Mon, 27 Apr 2026   Prob (F-statistic):              0.121
+Time:                        23:37:53   Log-Likelihood:                -2817.6
 No. Observations:                 768   AIC:                             5643.
 Df Residuals:                     764   BIC:                             5662.
 Df Model:                           3                                         
@@ -587,11 +590,11 @@ Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 </div>
 </div>
-<p>In this regression, the coefficient on state:post is the DiD estimate. This is the regression version of the same before-versus-after comparison shown in the group means table. The public Python replication I used also builds the analysis around FTE before and after, then estimates DiD-style models using New Jersey, time, and their interaction.</p>
+<p>In this regression, the coefficient on <code>state:post</code> is the DiD estimate. The coefficient is approximately +2.75, matching the group-means calculation above, so the direction is consistent with no employment decline in New Jersey relative to Pennsylvania. However, the interaction term is not statistically significant at conventional levels (p ≈ 0.11), which means the estimate is positive but not precise enough to confirm a clear treatment effect.</p>
 </section>
 <section id="additional-analysis-graph" class="level2">
 <h2 class="anchored" data-anchor-id="additional-analysis-graph">Additional Analysis: Graph</h2>
-<div id="7f25d545" class="cell" data-execution_count="5">
+<div id="d22c0d8e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -618,12 +621,12 @@ Notes:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw2_questions_files/figure-html/cell-6-output-1.png" width="661" height="468" class="figure-img"></p>
+<p><img src="hw2_questions_files/figure-html/cell-6-output-1.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The graph gives the same intuition visually. If the New Jersey line does not fall relative to the Pennsylvania line, that supports the paper’s result.</p>
+<p>The graph reinforces the main finding by showing no relative drop in employment for New Jersey after the minimum wage increase. Instead, the New Jersey trend remains comparable to or slightly stronger than Pennsylvania, which visually supports the difference-in-differences estimate.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
