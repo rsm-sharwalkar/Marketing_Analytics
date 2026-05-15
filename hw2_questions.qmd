@@ -11,7 +11,9 @@ jupyter: python3
 
 This post replicates part of Card and Krueger (1994), which studies whether New Jersey’s 1992 minimum wage increase reduced employment in fast-food restaurants relative to nearby Pennsylvania. The paper is a classic difference-in-differences design: New Jersey is the treated group, Pennsylvania is the comparison group, and employment is observed before and after the policy change. :contentReference[oaicite:1]{index=1}
 
-I do three things here. First, I load and clean the original data. Second, I replicate the main difference-in-differences result using full-time-equivalent employment. Third, I add a graph of mean employment before and after the policy change. The original data archive contains survey data for 410 restaurants, and the public replication script I am following computes FTE as full-time workers plus managers plus half of part-time workers. :contentReference[oaicite:2]{index=2}
+This post does three things. First, it loads and cleans the original data. Second, it replicates the main difference-in-differences result using full-time-equivalent employment. Third, it adds a graph of mean employment before and after the policy change. The original data archive contains survey data for 410 restaurants, and the public replication script used here computes FTE as full-time workers plus managers plus half of part-time workers. :contentReference[oaicite:2]{index=2}
+
+**Key Insight:** The estimated difference-in-differences effect is +2.75 full-time-equivalent employees, suggesting that New Jersey's minimum wage increase did not reduce fast-food employment relative to Pennsylvania.
 
 ## Load the Data
 
@@ -44,7 +46,7 @@ cols = [line.strip().split()[0].lower() for line in codes]
 
 df.columns = cols
 
-print("Shape:", df.shape)
+print("Prabhlin new Shape:", df.shape)
 print("\nFirst 20 columns:")
 print(df.columns.tolist()[:20])
 
@@ -96,6 +98,10 @@ print("NJ change in FTE:", round(nj_change, 3))
 print("Difference-in-differences estimate:", round(did_estimate, 3))
 ```
 
+Employment falls in Pennsylvania but rises slightly in New Jersey over the same period. The positive difference-in-differences estimate implies that employment in New Jersey did not decline relative to the control group after the policy change, which is consistent with Card and Krueger's conclusion.
+
+The group means show that average FTE employment did not decrease in New Jersey relative to Pennsylvania after the minimum wage increase. Pennsylvania restaurants experienced a larger decline in employment, while New Jersey restaurants were roughly flat to slightly higher. The DiD estimate of about +2.75 means that New Jersey employment increased by approximately 2.75 FTE workers per restaurant relative to the change in Pennsylvania.
+
 Regression Version of the DiD
 ```{python}
 import statsmodels.formula.api as smf
@@ -117,7 +123,7 @@ did_model = smf.ols("employment ~ state + post + state:post", data=long_df).fit(
 print(did_model.summary())
 ```
 
-In this regression, the coefficient on state:post is the DiD estimate. This is the regression version of the same before-versus-after comparison shown in the group means table. The public Python replication I used also builds the analysis around FTE before and after, then estimates DiD-style models using New Jersey, time, and their interaction.
+In this regression, the coefficient on `state:post` is the DiD estimate. The coefficient is approximately +2.75, matching the group-means calculation above, so the direction is consistent with no employment decline in New Jersey relative to Pennsylvania. However, the interaction term is not statistically significant at conventional levels (p ≈ 0.11), which means the estimate is positive but not precise enough to confirm a clear treatment effect.
 
 ## Additional Analysis: Graph
 ```{python}
@@ -143,7 +149,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The graph gives the same intuition visually. If the New Jersey line does not fall relative to the Pennsylvania line, that supports the paper’s result.
+The graph reinforces the main finding by showing no relative drop in employment for New Jersey after the minimum wage increase. Instead, the New Jersey trend remains comparable to or slightly stronger than Pennsylvania, which visually supports the difference-in-differences estimate.
 
 ## Conclusion
 
