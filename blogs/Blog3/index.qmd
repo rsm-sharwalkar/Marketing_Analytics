@@ -197,11 +197,9 @@ img:hover {
   font-weight: 500;
   color: #1e293b;
 }
-
 .quarto-container, article {
   background: #fafaf9;
 }
-
 mjx-container[display="true"] {
   background: #fff7ed;
   border-left: 4px solid #f97316;
