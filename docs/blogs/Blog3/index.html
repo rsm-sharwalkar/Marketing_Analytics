@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shalini Harwalkar">
-<meta name="dcterms.date" content="2026-05-15">
+<meta name="dcterms.date" content="2026-05-21">
 
 <title>Does Blueprinty’s Software Actually Help? A Poisson Regression Case Study – My Website</title>
 <style>
@@ -252,7 +252,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 15, 2026</p>
+      <p class="date">May 21, 2026</p>
     </div>
   </div>
   
@@ -420,11 +420,9 @@ img:hover {
   font-weight: 500;
   color: #1e293b;
 }
-
 .quarto-container, article {
   background: #fafaf9;
 }
-
 mjx-container[display="true"] {
   background: #fff7ed;
   border-left: 4px solid #f97316;
@@ -473,7 +471,7 @@ hr {
 <section id="patent-counts" class="level3">
 <h3 class="anchored" data-anchor-id="patent-counts">Patent Counts</h3>
 <p>The first question is simple: do Blueprinty customers receive more patents? The histograms below compare the distribution of 5-year patent counts for the two groups.</p>
-<div id="d0cf268f" class="cell" data-execution_count="3">
+<div id="3af8ac71" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -487,7 +485,7 @@ hr {
 </section>
 <section id="regional-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="regional-distribution">Regional Distribution</h3>
-<div id="205306dd" class="cell" data-execution_count="4">
+<div id="3c3412e7" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -501,7 +499,7 @@ hr {
 </section>
 <section id="firm-age" class="level3">
 <h3 class="anchored" data-anchor-id="firm-age">Firm Age</h3>
-<div id="3154ee45" class="cell" data-execution_count="5">
+<div id="b6591ad8" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -543,7 +541,7 @@ f(y_i \mid \lambda) = \frac{e^{-\lambda} \lambda^{y_i}}{y_i!}
 </section>
 <section id="coding-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="coding-the-log-likelihood">Coding the Log-Likelihood</h3>
-<div id="4212f2e2" class="cell" data-execution_count="6">
+<div id="5e0d6213" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
@@ -559,7 +557,7 @@ f(y_i \mid \lambda) = \frac{e^{-\lambda} \lambda^{y_i}}{y_i!}
 </section>
 <section id="visualizing-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-log-likelihood">Visualizing the Log-Likelihood</h3>
-<div id="89c8cddf" class="cell" data-execution_count="7">
+<div id="71d48985" class="cell" data-execution_count="7">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df[<span class="st">'patents'</span>].values</span>
@@ -602,7 +600,7 @@ f(y_i \mid \lambda) = \frac{e^{-\lambda} \lambda^{y_i}}{y_i!}
 </section>
 <section id="numerical-confirmation" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-confirmation">Numerical Confirmation</h3>
-<div id="5ba82a5a" class="cell" data-execution_count="8">
+<div id="9c285406" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> optimize.minimize_scalar(</span>
@@ -636,7 +634,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="setting-up-the-design-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-the-design-matrix">Setting Up the Design Matrix</h3>
-<div id="cd122f01" class="cell" data-execution_count="9">
+<div id="9a6c42c7" class="cell" data-execution_count="9">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize age for numerical stability</span></span>
@@ -668,7 +666,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="log-likelihood-for-regression" class="level3">
 <h3 class="anchored" data-anchor-id="log-likelihood-for-regression">Log-Likelihood for Regression</h3>
-<div id="5ca1f1d7" class="cell" data-execution_count="10">
+<div id="ebd861b7" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
@@ -680,7 +678,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="finding-the-mle-with-scipy.optimize" class="level3">
 <h3 class="anchored" data-anchor-id="finding-the-mle-with-scipy.optimize">Finding the MLE with <code>scipy.optimize</code></h3>
-<div id="bddb3834" class="cell" data-execution_count="11">
+<div id="ff337bc5" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beta0 <span class="op">=</span> np.zeros(X_mat.shape[<span class="dv">1</span>])</span>
@@ -703,7 +701,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 <section id="computing-standard-errors-from-the-hessian" class="level3">
 <h3 class="anchored" data-anchor-id="computing-standard-errors-from-the-hessian">Computing Standard Errors from the Hessian</h3>
 <p>Under standard regularity conditions, the covariance matrix of the MLE can be approximated using the inverse Hessian of the negative log-likelihood evaluated at the optimum. The standard errors are the square roots of the diagonal entries of that covariance matrix.</p>
-<div id="71affad8" class="cell" data-execution_count="12">
+<div id="7ebb1f88" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numerical_hessian(f, x, h<span class="op">=</span><span class="fl">1e-5</span>):</span>
@@ -727,7 +725,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="checking-against-statsmodels.glm" class="level3">
 <h3 class="anchored" data-anchor-id="checking-against-statsmodels.glm">Checking Against <code>statsmodels.GLM</code></h3>
-<div id="fccb4006" class="cell" data-execution_count="13">
+<div id="a59d66fe" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>glm <span class="op">=</span> sm.GLM(Y, X_mat, family<span class="op">=</span>sm.families.Poisson()).fit()</span>
@@ -758,7 +756,7 @@ iscustomer      0.2076    0.0309    0.2076  0.0309</code></pre>
 </section>
 <section id="regression-results-table" class="level3">
 <h3 class="anchored" data-anchor-id="regression-results-table">Regression Results Table</h3>
-<div id="6ef3785c" class="cell" data-execution_count="14">
+<div id="ca7317af" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -772,7 +770,7 @@ iscustomer      0.2076    0.0309    0.2076  0.0309</code></pre>
 </section>
 <section id="coefficient-plot" class="level3">
 <h3 class="anchored" data-anchor-id="coefficient-plot">Coefficient Plot</h3>
-<div id="75345a74" class="cell" data-execution_count="15">
+<div id="40685d4d" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -850,7 +848,7 @@ iscustomer      0.2076    0.0309    0.2076  0.0309</code></pre>
 <li><span class="math inline">\(X_0\)</span>: every firm is treated as a non-customer.</li>
 <li><span class="math inline">\(X_1\)</span>: every firm is treated as a Blueprinty customer.</li>
 </ol>
-<div id="50db56c5" class="cell" data-execution_count="17">
+<div id="ead6b80b" class="cell" data-execution_count="17">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X0 <span class="op">=</span> X_mat.copy()</span>
@@ -874,7 +872,7 @@ Average predicted patents as customer:     4.229
 Average predicted difference:              0.793 additional patents</code></pre>
 </div>
 </div>
-<div id="bfa81aec" class="cell" data-execution_count="18">
+<div id="debe2754" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
